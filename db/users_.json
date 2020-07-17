@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "5ef5518e7d0fbcb714e6c4d4"
+  },
+  "order": [
+    {
+      "$oid": "5ef541a3ea2069c16ec28794"
+    }
+  ],
+  "firstName": "Brianna",
+  "lastName": "Flanders",
+  "address": "55 Edgecomb Road, Lisbon Falls Maine",
+  "email": "bf@gmail.com",
+  "userCreated": {
+    "$date": "2020-06-26T01:38:22.925Z"
+  }
+},{
+  "_id": {
+    "$oid": "5ef553a57d0fbcb714e6c4d6"
+  },
+  "order": [
+    {
+      "$oid": "5ef541a3ea2069c16ec28797"
+    },
+    {
+      "$oid": "5ef541a3ea2069c16ec28795"
+    }
+  ],
+  "firstName": "Angela",
+  "lastName": "Dowse",
+  "address": "55 Edgecomb Road, Lisbon Falls Maine",
+  "email": "angela@gmail.com",
+  "userCreated": {
+    "$date": "2020-06-26T01:47:17.705Z"
+  }
+}]

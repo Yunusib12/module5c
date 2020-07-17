@@ -1,0 +1,32 @@
+[
+  {
+    "productName": "Samsung Galaxy Note S10",
+    "price": 560,
+    "Status": "",
+    "orderDate": ""
+  },
+  {
+    "productName": "iPhone 11",
+    "price": 1330,
+    "Status": "",
+    "orderDate": ""
+  },
+  {
+    "productName": "Hp Lasertjet",
+    "price": 150,
+    "Status": "",
+    "orderDate": ""
+  },
+  {
+    "productName": "Optical Mouse",
+    "price": 15,
+    "Status": "",
+    "orderDate": ""
+  },
+  {
+    "productName": "Sony Sub",
+    "price": 280,
+    "Status": "",
+    "orderDate": ""
+  }
+]
