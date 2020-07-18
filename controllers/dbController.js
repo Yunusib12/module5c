@@ -6,83 +6,97 @@ const dbController = {
 
     addUser: (req, res) => {
 
-        const userObject = req.body;
-        const objectSize = Object.keys(userObject).length;
-        let finalUserObject = [];
-        let finalUserOrderObject = [];
-        let isUserCreated = false;
-        let hasOrder = false;
+        const userObject = req.body.userObject;
+        const productArray = req.body.productArray;
 
-        if (objectSize > 4) {
+        if (typeof (productArray) == "undefined") {
 
-            // Get a subset of the object properties
-            let userDataObject = (({ firstName, lastName, address, email }) => ({ firstName, lastName, address, email }))(userObject);
 
-            // Get a array of products selected from the object
-            let userSelectedProductsArray = Object.values(userObject).slice(4);
+            console.log("just create the user")
+        } else {
 
-            // Insert user data into the database
-            db.User.create(userDataObject, (err, userData) => {
-                if (err) {
-                    res.status(500).send(err);
-                }
-                else {
 
-                    let userId = userData._id;
-
-                    // Create the user order
-                    let userOrderObject = userSelectedProductsArray.map((product) => {
-                        return {
-                            productId: product,
-                            userId: userId
-                        }
-                    });
-
-                    // Inserting the orders into the database
-                    db.Order.create(userOrderObject, (err, userOderData) => {
-                        if (err) {
-                            res.status(500).send(err);
-                        } else {
-
-                            //Get all user orders
-                            let userId = userOderData.map((userOrder) => {
-                                console.log("Map userOrder", userOrder);
-                                return userOrder.userId
-                            });
-
-                            function getUserOrder(user) {
-
-                                console.log("fUserId", user);
-                            }
-                            getUserOrder(userId);
-
-                            finalUserOrderObject.push(userOderData);
-
-                            isUserCreated = true;
-                            hasOrder = true;
-                            console.log(isUserCreated, finalUserObject, finalUserOrderObject);
-
-                            res.render('main', { isUserCreated, hasOrder, finalUserObject, finalUserOrderObject });
-                        }
-                    })
-
-                    finalUserObject.push(userData);
-                }
-            });
+            console.log("add the user order");
         }
-        else {
-            db.User.create(userObject, (err, data) => {
-                if (err) {
-                    res.status(500).send(err);
-                } else {
 
-                    finalUserObject.push(data);
-                    isUserCreated = true;
-                    console.log(isUserCreated, finalUserObject, hasOrder);
-                    res.render('main', { isUserCreated, finalUserObject, hasOrder });
-                }
-            });
-        }
+
+        res.json({ msq: "Got it" });
+        // const objectSize = Object.keys(userObject).length;
+        // let finalUserObject = [];
+        // let finalUserOrderObject = [];
+        // let isUserCreated = false;
+        // let hasOrder = false;
+
+        // if (objectSize > 4) {
+
+        //     // Get a subset of the object properties
+        //     let userDataObject = (({ firstName, lastName, address, email }) => ({ firstName, lastName, address, email }))(userObject);
+
+        //     // Get a array of products selected from the object
+        //     let userSelectedProductsArray = Object.values(userObject).slice(4);
+
+        //     // Insert user data into the database
+        //     db.User.create(userDataObject, (err, userData) => {
+        //         if (err) {
+        //             res.status(500).send(err);
+        //         }
+        //         else {
+
+        //             let userId = userData._id;
+
+        //             // Create the user order
+        //             let userOrderObject = userSelectedProductsArray.map((product) => {
+        //                 return {
+        //                     productId: product,
+        //                     userId: userId
+        //                 }
+        //             });
+
+        //             // Inserting the orders into the database
+        //             db.Order.create(userOrderObject, (err, userOderData) => {
+        //                 if (err) {
+        //                     res.status(500).send(err);
+        //                 } else {
+
+        //                     //Get all user orders
+        //                     let userId = userOderData.map((userOrder) => {
+        //                         console.log("Map userOrder", userOrder);
+        //                         return userOrder.userId
+        //                     });
+
+        //                     function getUserOrder(user) {
+
+        //                         console.log("fUserId", user);
+        //                     }
+        //                     getUserOrder(userId);
+
+        //                     finalUserOrderObject.push(userOderData);
+
+        //                     isUserCreated = true;
+        //                     hasOrder = true;
+        //                     console.log(isUserCreated, finalUserObject, finalUserOrderObject);
+
+        //                     res.render('main', { isUserCreated, hasOrder, finalUserObject, finalUserOrderObject });
+        //                 }
+        //             })
+
+        //             finalUserObject.push(userData);
+        //         }
+        //     });
+        // }
+        // else {
+        //     db.User.create(userObject, (err, data) => {
+        //         if (err) {
+        //             res.status(500).send(err);
+        //         } else {
+
+        //             finalUserObject.push(data);
+        //             isUserCreated = true;
+        //             console.log(isUserCreated, finalUserObject, hasOrder);
+        //             res.render('main', { isUserCreated, finalUserObject, hasOrder });
+        //         }
+        //     });
+        // }
     },
     addOrder: (req, res) => {
         db.Order.create(req.body, (err, data) => {
